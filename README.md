@@ -19,24 +19,7 @@ Constructs a new wifi connection object.
 
 - **iface**  - Specifies the name of the interface (default is **wlan0**)
 
-### getNetworks()
-
-Returns a promise containing a list of Wi-Fi networks.
-
-````javascript
-
-var Wifi = require('rpi-wifi-connection');
-var wifi = new Wifi();
-
-wifi.getNetworks().then((networks) => {
-    console.log(networks);
-});
-
-//  [ { id: 0, ssid: 'Julia' } ]
-
-````
-
-### connectToNetwork(options)
+### connect(options)
 
 Connects to the specified network.
 
@@ -45,7 +28,6 @@ Connects to the specified network.
 - **options.timeout**  - Specifies the number of milliseconds to wait for connection. Default is 30000.
 
 ````javascript
-
 var Wifi = require('rpi-wifi-connection');
 var wifi = new Wifi();
 
@@ -55,12 +37,9 @@ wifi.connect({ssid:'my-network', psk:'raspberry'}).then(() => {
 .catch((error) => {
     console.log(error);
 });
-
 ````
 
-
 ### getStatus()
-
 ````javascript
 
 var Wifi = require('rpi-wifi-connection');
@@ -74,13 +53,11 @@ wifi.getStatus().then((status) => {
 });
 
 // { ssid: 'Julia', ip_address: '10.0.1.189' }
-
 ````
 
 ### getState()
 
 ````javascript
-
 var Wifi = require('rpi-wifi-connection');
 var wifi = new Wifi();
 
@@ -93,6 +70,19 @@ wifi.getState().then((connected) => {
 .catch((error) => {
     console.log(error);
 });
+````
 
+### getNetworks()
 
+Returns a promise containing a list of Wi-Fi networks.
+
+````javascript
+var Wifi = require('rpi-wifi-connection');
+var wifi = new Wifi();
+
+wifi.getNetworks().then((networks) => {
+    console.log(networks);
+});
+
+//  [ { id: 0, ssid: 'Julia' } ]
 ````
