@@ -5,7 +5,7 @@ var ChildProcess  = require('child_process');
 
 function debug() {
     console.log.apply(this, arguments);
-}
+};
 
 function isType(obj, type) {
 	return Object.prototype.toString.call(obj) == '[object ' + type + ']';
@@ -27,13 +27,13 @@ module.exports = class WiFiConnection {
 
         if (!isObject(options))
             options = {};
-            
+
         if (!options.debug) {
             debug = function() {
             };
         }
 
-        this.iface = iface;
+        this.iface = options.iface;
     }
 
     wpa_cli(command, pattern) {
