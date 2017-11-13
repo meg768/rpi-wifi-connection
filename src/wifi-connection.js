@@ -15,22 +15,14 @@ function isString(obj) {
 	return isType(obj, 'String');
 };
 
-function isObject(obj) {
-	return obj !== null && isType(obj, 'Object');
-};
-
 module.exports = class WiFiConnection {
 
     constructor(options) {
 
-        if (options == undefined)
-            options = 'wlan0';
-
         if (isString(options))
             options = {iface:options};
 
-        if (!isObject(options))
-            options = {};
+        options = Object.assign({iface:'wlan0'}, options);
 
         if (!options.debug) {
             debug = function() {
