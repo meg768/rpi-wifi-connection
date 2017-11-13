@@ -1,5 +1,5 @@
 var Wifi = require('./src/wifi-connection.js');
-var wifi = new WifiConnection();
+var wifi = new Wifi();
 
 wifi.connect({ssid:'Julia', psk:'potatismos'}).then(() => {
     console.log('Connected to network.');
