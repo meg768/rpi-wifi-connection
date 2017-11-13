@@ -1,12 +1,10 @@
 
-var fs            = require('fs');
 var sprintf       = require('sprintf-js').sprintf;
-var isString      = require('yow/is').isString;
 var Events        = require('events');
 var ChildProcess  = require('child_process');
 
 function debug() {
-    //console.log.apply(this, arguments);
+    console.log.apply(this, arguments);
 }
 
 function isType(obj, type) {
