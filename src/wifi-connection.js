@@ -24,7 +24,7 @@ module.exports = class WiFiConnection {
     constructor(options) {
 
         if (options == undefined)
-            options = {iface:'wlan0'};
+            options = 'wlan0';
 
         if (isString(options))
             options = {iface:options};
