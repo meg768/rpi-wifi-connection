@@ -23,7 +23,7 @@ Connects to the specified network.
 
 - **options.ssid**     - Specifies the network name.
 - **options.psk**      - Specifies the password.
-- **options.timeout**  - Specifies the number of milliseconds to wait for connection. Default is 30000.
+- **options.timeout**  - Specifies the number of milliseconds to wait for connection. Default is 60 seconds (60000).
 
 ````javascript
 var Wifi = require('rpi-wifi-connection');
