@@ -4,7 +4,6 @@ var Events        = require('events');
 var ChildProcess  = require('child_process');
 
 function debug() {
-    console.log.apply(this, arguments);
 };
 
 function isType(obj, type) {
@@ -24,8 +23,9 @@ module.exports = class WiFiConnection {
 
         options = Object.assign({iface:'wlan0'}, options);
 
-        if (!options.debug) {
+        if (options.debug) {
             debug = function() {
+                console.log.apply(this, arguments);
             };
         }
 
