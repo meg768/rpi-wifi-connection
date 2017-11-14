@@ -184,7 +184,7 @@ module.exports = class WiFiConnection {
         }
 
         function removeNetwork(id) {
-            debug(sprintf('Removing network #%d...', id));
+            debug(sprintf('Removing network %d...', id));
             self.wpa_cli(sprintf('remove_network %d', id), '^OK');
         }
 

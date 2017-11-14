@@ -5,12 +5,9 @@ Module to connect a Raspberry Pi to Wi-Fi
 ## Installation
 	$ npm install rpi-wifi-connection --save
 
-
 ## Usage
-
     var Wifi = require('rpi-wifi-connection');
     var wifi = new Wifi();
-
 
 ## Methods
 
@@ -41,6 +38,9 @@ wifi.connect({ssid:'my-network', psk:'raspberry'}).then(() => {
 ````
 
 ### getStatus()
+
+Returns a promise containing the network status.
+
 ````javascript
 
 var Wifi = require('rpi-wifi-connection');
@@ -57,6 +57,8 @@ wifi.getStatus().then((status) => {
 ````
 
 ### getState()
+
+Returns a promise containing the connection state.
 
 ````javascript
 var Wifi = require('rpi-wifi-connection');
