@@ -134,7 +134,7 @@ module.exports = class WiFiConnection {
 
     connect(options) {
 
-        options = Object.assign({timeout:30000}, options);
+        options = Object.assign({timeout:60000}, options);
 
         var self     = this;
         var ssid     = options.ssid;
