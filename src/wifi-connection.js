@@ -131,7 +131,6 @@ module.exports = class WiFiConnection {
 
     }
 
-
     connect(options) {
 
         options = Object.assign({timeout:60000}, options);
@@ -286,5 +285,47 @@ module.exports = class WiFiConnection {
             })
         });
 
+    }
+
+    scan() {
+        
+        var self = this;
+
+        function scan() {
+            debug('Scan ssids');
+            return self.wpa_cli('scan');
+        }
+
+        function scan_results() {
+            debug('Ssids scan results');
+            return self.wpa_cli('scan_results');
+        }
+
+        return new Promise((resolve, reject) => {
+            
+            scan().then((ssid) => {
+                return scan_results();
+            })
+            .then((output) => {
+                output = output.split('\n');
+                output.splice(0, 1);
+
+                var ssids = [];
+
+                output.forEach((line) => {
+                    var params = line.split('\t');
+                    ssids.push({
+                        bssid         : params[0],
+                        signalLevel   : parseInt(params[1]),
+                        ssid          : params[4]
+                    });
+
+                });
+                resolve(ssids);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+        }); 
     }
 }
