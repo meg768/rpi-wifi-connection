@@ -37,6 +37,26 @@ wifi.connect({ssid:'my-network', psk:'raspberry'}).then(() => {
 });
 ````
 
+### scan()
+
+Return a promise containing the available networks
+
+````javascript
+
+var Wifi = require('rpi-wifi-connection');
+var wifi = new Wifi();
+
+wifi.scan().then((ssids) => {
+    console.log(ssids);
+})
+.catch((error) => {
+    console.log(error);
+});
+
+// [ { bssid: 'f4:ca:e5:e7:de:58', signalLevel: 2467, ssid: 'homo' },
+  { bssid: 'f4:ca:e5:e7:de:5a', signalLevel: 2467, ssid: 'deus' } ]
+````
+
 ### getStatus()
 
 Returns a promise containing the network status.
