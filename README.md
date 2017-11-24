@@ -78,7 +78,9 @@ wifi.getStatus().then((status) => {
 
 ### getState()
 
-Returns a promise containing the connection state.
+Returns a promise containing the connection state. Please note that
+this only returns the connection state of your Raspberry Pi for any network.
+To see if you are connected to a specific network, use **getStatus()**.
 
 ````javascript
 var Wifi = require('rpi-wifi-connection');
