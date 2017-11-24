@@ -143,7 +143,7 @@ module.exports = class WiFiConnection {
 
     connect(options) {
 
-        options = Object.assign({timeout:60000}, options);
+        options = Object.assign({timeout:60000, removePreviousNetworks:false}, options);
 
         var self     = this;
         var ssid     = options.ssid;
@@ -264,7 +264,13 @@ module.exports = class WiFiConnection {
 
             var networkID = undefined;
 
-            removeAllNetworks().then(() => {
+            Promise.resolve().then(() => {
+                if (options.removePreviousNetworks)
+                    return removeAllNetworks();
+                else
+                    return Promise.resolve();
+            })
+            .then(() => {
                 return addNetwork();
             })
             .then((id) => {
@@ -283,7 +289,6 @@ module.exports = class WiFiConnection {
             .then(() => {
                 return saveConfiguration();
             })
-
             .then(() => {
                 resolve();
             })
