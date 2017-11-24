@@ -14,6 +14,11 @@ function isString(obj) {
 	return isType(obj, 'String');
 };
 
+ function isFunction(obj) {
+	return typeof obj === 'function';
+};
+
+
 module.exports = class WiFiConnection {
 
     constructor(options) {
@@ -24,9 +29,14 @@ module.exports = class WiFiConnection {
         options = Object.assign({iface:'wlan0'}, options);
 
         if (options.debug) {
-            debug = function() {
-                console.log.apply(this, arguments);
-            };
+			if (isFunction(options.debug)) {
+				debug = options.debug;
+			}
+			else {
+				debug = function() {
+	                console.log.apply(this, arguments);
+	            };
+			}
         }
 
         this.iface = options.iface;
@@ -288,7 +298,7 @@ module.exports = class WiFiConnection {
     }
 
     scan() {
-        
+
         var self = this;
 
         function scan() {
@@ -302,7 +312,7 @@ module.exports = class WiFiConnection {
         }
 
         return new Promise((resolve, reject) => {
-            
+
             scan().then((ssid) => {
                 return scan_results();
             })
@@ -326,6 +336,6 @@ module.exports = class WiFiConnection {
             .catch((error) => {
                 reject(error);
             })
-        }); 
+        });
     }
 }
