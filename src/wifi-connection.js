@@ -206,9 +206,9 @@ module.exports = class WiFiConnection {
 
             return new Promise((resolve, reject) => {
 
-                self.getState().then((connected) => {
+                self.getStatus().then((status) => {
 
-                    if (connected) {
+                    if (isString(status.ip_address) && status.ssid == ssid) {
                         return Promise.resolve();
                     }
                     else {

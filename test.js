@@ -25,7 +25,7 @@ function switchNetworks() {
         console.log(error);
     });
 
-
 }
+
 
 switchNetworks();
