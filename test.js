@@ -1,9 +1,32 @@
 var Wifi = require('./src/wifi-connection.js');
 var wifi = new Wifi({debug:true});
 
-wifi.connect({ssid:'Julia', psk:'potatismosX'}).then(() => {
-    console.log('Connected to network.');
-})
-.catch((error) => {
-    console.log(error);
-});
+function() switchNetworks {
+
+    Promise.resolve().then(() => {
+        console.log('Connecting to first network...')
+        return wifi.connect({ssid:'Julia', psk:'potatismos'});
+    })
+    .then(() => {
+        return wifi.getStatus();
+    })
+    .then((status) => {
+        console.log('Julia status:', status);
+        console.log('Switching to another network...')
+        return wifi.connect({ssid:'Magnus iPhone', psk:'potatismos'});
+    })
+    .then(() => {
+        return wifi.getStatus();
+    })
+    .then((status) => {
+        console.log('iPhone status:', status);
+        return wifi.getStatus();
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+
+}
+
+switchNetworks();
