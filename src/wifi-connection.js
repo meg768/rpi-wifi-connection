@@ -7,15 +7,15 @@ function debug() {
 };
 
 function isType(obj, type) {
-	return Object.prototype.toString.call(obj) == '[object ' + type + ']';
+    return Object.prototype.toString.call(obj) == '[object ' + type + ']';
 };
 
 function isString(obj) {
-	return isType(obj, 'String');
+    return isType(obj, 'String');
 };
 
  function isFunction(obj) {
-	return typeof obj === 'function';
+    return typeof obj === 'function';
 };
 
 
@@ -29,14 +29,14 @@ module.exports = class WiFiConnection {
         options = Object.assign({iface:'wlan0'}, options);
 
         if (options.debug) {
-			if (isFunction(options.debug)) {
-				debug = options.debug;
-			}
-			else {
-				debug = function() {
-	                console.log.apply(this, arguments);
-	            };
-			}
+            if (isFunction(options.debug)) {
+                debug = options.debug;
+            }
+            else {
+                debug = function() {
+                    console.log.apply(this, arguments);
+                };
+            }
         }
 
         this.iface = options.iface;
