@@ -62,7 +62,7 @@ module.exports = class WiFiConnection {
                                 resolve();
                         }
                         else {
-                            reject(new Error(sprintf('Could not parse reply from wpa_cli %s "%s"', command, output)));
+                            reject(new Error(sprintf('Could not parse reply from wpa_cli %s: "%s"', command, output)));
 
                         }
 
