@@ -27,5 +27,34 @@ function switchNetworks() {
 
 }
 
+function switchToInvalidNetwork() {
 
-switchNetworks();
+    Promise.resolve().then(() => {
+        return wifi.connect({ssid:'Julia', psk:'potatismos'});
+    })
+    .then(() => {
+        return wifi.getStatus();
+    })
+    .then((status) => {
+        console.log('Julia status:', status);
+        console.log('Switching to another network...')
+        return wifi.connect({ssid:'Magnus iPhone', psk:'XXX'});
+    })
+    .then(() => {
+        console.log('Should never get here!');
+    })
+
+    .catch((error) => {
+        console.log(error);
+    })
+    .then(() => {
+        return wifi.getStatus();
+    })
+    .then((status) => {
+        console.log('Connection status:', status);
+    })
+
+}
+
+
+switchToInvalidNetwork();
