@@ -202,11 +202,11 @@ module.exports = class WiFiConnection {
             if (timestamp == undefined)
                 timestamp = new Date();
 
-            debug('Waiting for network connection...');
-
             return new Promise((resolve, reject) => {
 
                 self.getStatus().then((status) => {
+
+                    console.log('Connection status:', status);
 
                     if (isString(status.ip_address) && status.ssid == ssid) {
                         return Promise.resolve();
