@@ -51,7 +51,7 @@ function switchToInvalidNetwork() {
         return wifi.getStatus();
     })
     .then((status) => {
-        console.log('Connection status:', status);
+        console.log('Current connection status:', status);
     })
 
 }
