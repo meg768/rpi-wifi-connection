@@ -38,7 +38,7 @@ function switchToInvalidNetwork() {
     .then((status) => {
         console.log('Julia status:', status);
         console.log('Switching to another network...')
-        return wifi.connect({ssid:'Magnus iPhone', psk:'XXX'});
+        return wifi.connect({ssid:'Magnus iPhone', psk:'potatismos'});
     })
     .then(() => {
         console.log('Should never get here!');
