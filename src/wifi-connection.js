@@ -271,7 +271,7 @@ module.exports = class WiFiConnection {
 
             var networkID = undefined;
 
-            removePreviousNetworks().then(() => {
+            removeExistingNetworks().then(() => {
                 return addNetwork();
             })
             .then((id) => {
