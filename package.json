@@ -1,6 +1,6 @@
 {
   "name": "rpi-wifi-connection",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Module to connect a Raspberry Pi to Wi-Fi",
   "main": "index.js",
   "scripts": {
