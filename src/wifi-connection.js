@@ -236,11 +236,18 @@ module.exports = class WiFiConnection {
 
         }
 
-        function removeAllNetworks() {
-            debug('Removing all networks...');
+
+        function removeExistingNetworks() {
+
+            debug(sprintf('Removing previous networks with the same ssid "%s"...', ssid));
 
             return new Promise((resolve, reject) => {
                 self.getNetworks().then((networks) => {
+
+                    networks = networks.filter((network) => {
+                        return network.ssid == ssid;
+                    });
+
                     var promise = Promise.resolve();
 
                     networks.forEach((network) => {
@@ -264,13 +271,7 @@ module.exports = class WiFiConnection {
 
             var networkID = undefined;
 
-            Promise.resolve().then(() => {
-                if (options.removePreviousNetworks)
-                    return removeAllNetworks();
-                else
-                    return Promise.resolve();
-            })
-            .then(() => {
+            removePreviousNetworks().then(() => {
                 return addNetwork();
             })
             .then((id) => {
