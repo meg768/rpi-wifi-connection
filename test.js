@@ -1,7 +1,7 @@
 var Wifi = require('./src/wifi-connection.js');
 var wifi = new Wifi({debug:true});
 
-function() switchNetworks {
+function switchNetworks() {
 
     Promise.resolve().then(() => {
         console.log('Connecting to first network...')
@@ -20,7 +20,6 @@ function() switchNetworks {
     })
     .then((status) => {
         console.log('iPhone status:', status);
-        return wifi.getStatus();
     })
     .catch((error) => {
         console.log(error);
