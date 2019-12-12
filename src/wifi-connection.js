@@ -334,7 +334,8 @@ module.exports = class WiFiConnection {
                     var params = line.split('\t');
                     ssids.push({
                         bssid         : params[0],
-                        signalLevel   : parseInt(params[1]),
+                        frequency     : parseInt(params[1]),
+                        signalLevel   : parseInt(params[2]),
                         ssid          : params[4]
                     });
 
