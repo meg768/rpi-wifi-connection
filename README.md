@@ -53,8 +53,8 @@ wifi.scan().then((ssids) => {
     console.log(error);
 });
 
-// [ { bssid: 'f4:ca:e5:e7:de:58', signalLevel: 2467, ssid: 'homo' },
-  { bssid: 'f4:ca:e5:e7:de:5a', signalLevel: 2467, ssid: 'deus' } ]
+// [ { bssid: 'f4:ca:e5:e7:de:58', signalLevel: -72, frequency: 2467, ssid: 'homo' },
+  { bssid: 'f4:ca:e5:e7:de:5a', signalLevel: -72, frequency: 2467, ssid: 'deus' } ]
 ````
 
 ### getStatus()
