@@ -208,8 +208,8 @@ module.exports = class WiFiConnection {
 
                 self.getStatus().then((status) => {
 
-                    console.log('Connection status:', status);
-
+                    debug(sprintf('Connection status ssid=%s ip_address=%s ...', status.ssid || '', status.ip_address || ''));
+                    
                     if (isString(status.ip_address) && status.ssid == ssid) {
                         return Promise.resolve();
                     }
