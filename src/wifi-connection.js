@@ -151,6 +151,7 @@ module.exports = class WiFiConnection {
         var ssid     = options.ssid;
         var password = options.psk;
         var timeout  = options.timeout;
+        var hidden   = options.hidden;
 
         function delay(ms) {
             return new Promise((resolve, reject) => {
@@ -175,7 +176,11 @@ module.exports = class WiFiConnection {
 
         function setNetwork(id, name, value) {
             debug(sprintf('Setting variable %s=%s for network %d.', name, value, id));
-            return self.wpa_cli(sprintf('set_network %d %s \'"%s"\'', id, name, value), '^OK');
+            if (typeof value === 'number') {
+                return self.wpa_cli(sprintf('set_network %d %s %d', id, name, value), '^OK');
+            } else {
+                return self.wpa_cli(sprintf('set_network %d %s \'"%s"\'', id, name, value), '^OK');
+            }
         }
 
 
@@ -282,6 +287,9 @@ module.exports = class WiFiConnection {
             })
             .then(() => {
                 return (isString(password) ? setNetwork(networkID, 'psk', password) : Promise.resolve());
+            })
+            .then(() => {
+                return hidden ? setNetwork(networkID, 'scan_ssid', 1) : Promise.resolve();
             })
             .then(() => {
                 return selectNetwork(networkID);
