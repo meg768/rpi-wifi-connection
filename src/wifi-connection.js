@@ -344,6 +344,7 @@ module.exports = class WiFiConnection {
                         bssid         : params[0],
                         frequency     : parseInt(params[1]),
                         signalLevel   : parseInt(params[2]),
+                        flags         : params[3],
                         ssid          : params[4]
                     });
 
